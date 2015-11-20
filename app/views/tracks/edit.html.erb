@@ -1,0 +1,54 @@
+<h3>Update Track "<%= @track.title %>"</h3>
+
+<form action="<%= track_url(@track) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <%= auth_token %>
+
+  <label for="track_title_id">Track Title</label>
+  <input
+    type="text"
+    name="track[title]"
+    id="track_title_id"
+    value="<%= @track.title %>">
+  <br>
+
+  <label for="album_name_id">Album:</label>
+  <select name="track[album_id]", id="album_name_id">
+    <option></option>
+    <% @albums.each do |album| %>
+      <option
+        <%= @track.album_id == album.id ? "selected" : "" %>
+        value="<%= album.id %>">
+        <%= album.title %>
+      </option>
+    <% end %>
+  </select>
+  <br>
+
+  <input
+    type="radio"
+    name="track[bonus_or_regular]"
+    value="Bonus"
+    id="bonus_or_regular_id"
+    <%= @track.bonus_or_regular == "Bonus" ? "Regular" : "" %>>
+  <label for="bonus_or_regular_id">Live</label>
+  <input
+    type="radio"
+    name="track[bonus_or_regular]"
+    value="Regular"
+    id="bonus_or_regular_id"
+    <%= @track.bonus_or_regular == "Regular" ? "checked" : "" %>>
+  <label for="bonus_or_regular_id">Regular</label>
+  <br>
+
+  <label>
+    Lyrics
+    <textarea name="track[lyrics]"><%= @track.lyrics %></textarea>
+  </label>
+  <br>
+
+  <input type="submit" value="Update Track Info!">
+  </p>
+
+</form>

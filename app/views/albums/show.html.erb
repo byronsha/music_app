@@ -1,0 +1,21 @@
+<h3>Album Info</h3>
+<%= link_to "Edit", edit_album_url(@album) %>
+<br>
+<br>
+
+<li>Title: <%= @album.title %></li>
+<li>Artist: <%= link_to "#{@album.band.name}", band_url(@band) %></li>
+<li>Type: <%= @album.live_or_studio %></li>
+<br>
+
+<ul>
+  <li>Tracks
+    <% @album.tracks.each do |track| %>
+      <p><%= link_to "#{track.title}", track_url(track) %></p>
+    <% end %>
+  </li>
+</ul>
+<br>
+
+<%= button_to "Create New Track", new_track_url, method: :get %>
+<%= button_to "Delete Album", @album, method: :delete %>

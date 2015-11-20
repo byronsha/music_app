@@ -1,0 +1,19 @@
+<h3>Track Info</h3>
+<%= link_to "Edit", edit_track_url(@track) %>
+<br>
+<br>
+
+<li>Album: <%= link_to "#{@track.album.title}", album_url(@album) %></li>
+<li>Track No.: <%= @track.id %></li>
+<li>Title: <%= @track.title %></li>
+<li>Type: <%= @track.bonus_or_regular %></li>
+<li>Lyrics: <%= @track.lyrics %></li>
+<li>Notes: </li>
+  <% @track.notes.each do |note| %>
+    <p><%= note.notes %></p>
+  <% end %>
+<br>
+
+<%= render "notes/notes", track_id: @track.id %>
+
+<%= button_to "Delete Track", @track, method: :delete %>
